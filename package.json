@@ -1,0 +1,16 @@
+{
+  "name": "sveltekit-vitest-tsconfig-hijack",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "log": "jq '.compilerOptions | {paths, rootDirs}' ./packages/my-app/.svelte-kit/tsconfig.json",
+    "reset:sveltekit": "pnpm --filter=my-app build && pnpm run log",
+    "reset": "cd ./packages/my-app && vitest run && cd - && pnpm run log",
+    "hijack:vscode": "touch package.json && sleep 5 && pnpm run log",
+    "hijack": "vitest run && pnpm run log"
+  },
+  "devDependencies": {
+    "vitest": "^1.5.0"
+  }
+}
